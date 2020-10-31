@@ -1,25 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { createContext } from 'react';
 import './App.css';
+import Header from './Component/Header/Header';
+import Shop from './Component/ShopingMol/Shop';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import OrderReview from './Component/OrderReview/OrderReview';
+import ManageEnventory from './Component/ManageEnventory/ManageEnventory';
+import WrongPath from './Component/WrongPath/WrongPath';
+import InfoProduct from './Component/InfoProduct/InfoProduct';
+import Login from './Component/Login/Login';
+import Shipment from './Component/Shipment/Shipment';
+import { useState } from 'react';
+import PrivetRoute from './Component/PrivetRoute/PrivetRoute';
+export const UserContext = createContext();
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({});
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>
+  
+      <Router>
+      <Header></Header>
+        <Switch>
+          <Route path="/Shop">
+            <Shop></Shop>
+          </Route>
+          <Route path="/Review">
+            <OrderReview></OrderReview>
+          </Route>
+          <Route path="/Enventory">
+            <ManageEnventory></ManageEnventory>
+          </Route>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <PrivetRoute path="/shipment">
+            <Shipment></Shipment>
+          </PrivetRoute>
+          <Route exact path="/">
+            <Shop></Shop>
+          </Route>
+          <Route path="/Productivity/:Productivitykey">
+            <InfoProduct></InfoProduct>
+          </Route>
+          <Route path="*">
+            <WrongPath></WrongPath>
+          </Route>
+        </Switch>
+      </Router>
+    </UserContext.Provider>
   );
 }
 
