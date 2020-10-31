@@ -11,7 +11,7 @@ const Shipment = () => {
     const saveCart = getDatabaseCart();
     const orderDetails = {...loggedInUser, products: saveCart, shipment:data, orderTime: new Date()}
 
-    fetch('http://localhost:4000/addOrder', {
+    fetch('https://stark-headland-08286.herokuapp.com/addOrder', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(orderDetails)
@@ -48,8 +48,8 @@ const Shipment = () => {
         </form>
       </div>
 
-      <div className="col-md-6">
-        <h1>please pay for me</h1>
+      <div className="col-md-4">
+        <h1 className="mt-5 pt-5 pb-2">please pay for me</h1>
           <Payment></Payment>
       </div>
 

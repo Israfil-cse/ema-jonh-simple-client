@@ -30,7 +30,7 @@ const OrderReview = () => {
         const saveData = getDatabaseCart();
         const productKey = Object.keys(saveData);
 
-        fetch('http://localhost:4000/productsByKeys',{
+        fetch('https://stark-headland-08286.herokuapp.com/productsByKeys',{
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(productKey)

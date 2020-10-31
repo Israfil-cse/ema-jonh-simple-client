@@ -6,7 +6,7 @@ const InfoProduct = () => {
     const { Productivitykey } = useParams(); //{ Productivitykey} ata holo tmr dynamic path
     const [product, setProduct] = useState({});
     useEffect(() =>{
-        fetch('http://localhost:4000/Product/'+ Productivitykey)
+        fetch('https://stark-headland-08286.herokuapp.com/Product/'+ Productivitykey)
         .then(res => res.json())
         .then(data => setProduct(data))
     },[Productivitykey])

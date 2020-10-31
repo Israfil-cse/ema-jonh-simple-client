@@ -134,29 +134,19 @@ const Login = () => {
   }
   return (
 
-    <div style={{textAlign:'center'}}>
-      {user.isSignIn ? <button onClick={handleSignOut}>sign Out google</button> : <button onClick={handleSignIn}>sign in with google</button>
-      }
-      <button>Sign in with facebook</button>
-      {
-        user.isSignIn && <div>
-          <p>welcome,{user.name}</p>
-          <p>your email: {user.email}</p>
-          <p><img src={user.photo} alt="" /></p>
-        </div>
-      }
+    <div className="text-center">
 
-      <h1>Our own authentication</h1>
+      <h1 className="mt-5 ">Our own authentication</h1>
       <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
-      <label htmlFor="newUser">create user account</label>
-      <form onSubmit={handleSubmit}>
+      <label className="pl-2 text-center "  htmlFor="newUser">create user account</label>
+      <form className="w-50 mx-auto" onSubmit={handleSubmit}>
         {
-          newUser && <input type="text" name="name" onBlur={handleChange} placeholder="Drop your Name" required />
+          newUser && <input className="form-control" type="text" name="name" onBlur={handleChange} placeholder="Drop your Name" required />
         }
         <br />
-        <input type="text" name="email" onBlur={handleChange} placeholder="Drop your Email" required /> <br />
-        <input type="password" name="password" onBlur={handleChange} placeholder="Drop your password" required /> <br />
-        <input type="submit" value={newUser ? 'sign up' : 'sign in'} />
+        <input className="form-control" type="text" name="email" onBlur={handleChange} placeholder="Drop your Email" required /> <br />
+        <input className="form-control" type="password" name="password" onBlur={handleChange} placeholder="Drop your password" required /> <br />
+        <input className="form-control btn btn-dark" type="submit" value={newUser ? 'sign up' : 'sign in'} />
       </form>
       <p style={{ color: 'red' }}>{user.error}</p>
       {

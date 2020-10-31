@@ -13,7 +13,7 @@ const Shop = () => {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:4000/allProducts?search='+search)
+        fetch('https://stark-headland-08286.herokuapp.com/allProducts?search='+search)
         .then(res => res.json())
         .then(data => setProducts(data))
     },[search])
@@ -26,7 +26,7 @@ const Shop = () => {
     useEffect(() => {
         const saveData = getDatabaseCart();
         const productKey = Object.keys(saveData);
-        fetch('http://localhost:4000/productsByKeys',{
+        fetch('https://stark-headland-08286.herokuapp.com/productsByKeys',{
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(productKey)
@@ -58,8 +58,8 @@ const Shop = () => {
     return (
         <div className="shoping_mol">
             <div className="product_section">
-                <div>
-                    <input onBlur={handelSearch} type="text" placeholder="search items"/>
+                <div style={{margin:"0 auto"}} className=" pb-5">
+                    <input className="form-control" onChange={handelSearch} type="text" placeholder="  Search Items ................."/>
                 </div>
                 {
                     products.map(allProduct => <Productivity
